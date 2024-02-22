@@ -1,0 +1,112 @@
+{
+    "ApplicationName": "helloworld ",
+    "ApplicationEnvironment": "Prod",
+    "ApplicationURI": "https://exampleapp.com",
+    "Deployments": [
+      {
+        "DeploymentType": "VM",
+        "DeploymentKey": "WindowsServer2016",
+        "DeploymentDescription": "Jerom Virtual Machine",
+        "Resources": [
+          {
+            "ResourceType": "vCPU",
+            "ResourceCount": 4,
+            "ResourceUnitCost": 20,
+            "ResourceCost": 80
+          },
+          {
+            "ResourceType": "diskSpace",
+            "ResourceCount": 500,
+            "ResourceUnitCost": 1,
+            "ResourceCost": 500
+          },
+          {
+            "ResourceType": "licenceKey",
+            "ResourceCount": 1,
+            "ResourceUnitCost": 200,
+            "ResourceCost": 200
+          }
+        ],
+        "ResourcesCosts": 3000
+      },
+      {
+        "DeploymentType": "VM",
+        "DeploymentKey": "RHEL7",
+        "DeploymentDescription": "Jerom Another Virtual Machine",
+        "Resources": [
+          {
+            "ResourceType": "vCPU",
+            "ResourceCount": 4,
+            "ResourceUnitCost": 20,
+            "ResourceCost": 80
+          },
+          {
+            "ResourceType": "diskSpace",
+            "ResourceCount": 500,
+            "ResourceUnitCost": 1,
+            "ResourceCost": 500
+          },
+          {
+            "ResourceType": "licenceKey",
+            "ResourceCount": 1,
+            "ResourceUnitCost": 200,
+            "ResourceCost": 200
+          }
+        ],
+        "ResourcesCosts": 1000
+      },
+      {
+        "DeploymentType": "OCPC",
+        "DeploymentDescription": "Jerom Ocp Cluster",
+        "DeploymentKey": "OCPC",
+        "Resources": [
+          {
+            "ResourceType": "licenceKey",
+            "ResourceCount": 1,
+            "ResourceUnitCost": 5000,
+            "ResourceCost": 5000
+          },
+          {
+            "ResourceType": "vCPU",
+            "ResourceCount": 16,
+            "ResourceUnitCost": 20,
+            "ResourceCost": 320
+          },
+          {
+            "ResourceType": "diskSpace",
+            "ResourceCount": 1000,
+            "ResourceUnitCost": 1,
+            "ResourceCost": 1000
+          }
+        ],
+        "ResourcesCosts": 1500
+      },
+      {
+        "DeploymentType": "Exadata",
+        "DeploymentKey": "Exadata",
+        "DeploymentDescription": "Jerom Exadata Cluster",
+        "Resources": [
+          {
+            "ResourceType": "licenceKey",
+            "ResourceCount": 2,
+            "ResourceUnitCost": 10000,
+            "ResourceCost": 20000
+          },
+          {
+            "ResourceType": "vCPU",
+            "ResourceCount": 32,
+            "ResourceUnitCost": 40,
+            "ResourceCost": 1280
+          },
+          {
+            "ResourceType": "diskSpace",
+            "ResourceCount": 2000,
+            "ResourceUnitCost": 2,
+            "ResourceCost": 4000
+          }
+        ],
+        "ResourcesCosts": 1500
+      }
+    ]
+  }
+  

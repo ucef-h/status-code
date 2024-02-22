@@ -1,0 +1,23 @@
+<div>
+    <mat-form-field appearance="fill">
+      <mat-label>Application</mat-label>
+      <mat-select [value]="selectedApplication" (selectionChange)="onApplicationSelect($event.value)">
+        <mat-option *ngFor="let app of applications" [value]="app">{{ app }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" *ngIf="selectedApplication !== 'none'">
+      <mat-label>Environment</mat-label>
+      <mat-select [value]="selectedEnvironment" (selectionChange)="onEnvironmentSelect($event.value)">
+        <mat-option *ngFor="let env of environments" [value]="env">{{ env }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="selectedEnvironment !== 'none'">
+        <mat-label>Display Type</mat-label>
+        <mat-select [value]="selectedDisplayType" (selectionChange)="onDisplayTypeSelect($event.value)">
+          <mat-option *ngFor="let type of displayTypes" [value]="type">{{ type }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+  

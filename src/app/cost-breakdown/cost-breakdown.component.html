@@ -1,0 +1,74 @@
+<ng-container>
+  <app-application-selector (selectionComplete)="onSelectionChanged($event)"></app-application-selector>
+</ng-container>
+
+<ng-container *ngIf="selectedDisplayType === 'breakdown'">
+  <ng-container *ngIf="deploymentData">
+    <mat-card class="application-info-card">
+      <mat-card-content>
+        <h2>{{ deploymentData.ApplicationName }} ({{ deploymentData.ApplicationEnvironment }})</h2>
+        <a href="{{ deploymentData.ApplicationURI }}" target="_blank">{{ deploymentData.ApplicationURI }}</a>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="total-cost-card">
+      <mat-card-title class="deployment-title">Overall Cost</mat-card-title>
+      <mat-card-content>
+        <div *ngFor="let key of objectKeys(aggregatedCostsPerType)">
+          <p><strong>Total {{ key }} Cost (€):</strong> {{ aggregatedCostsPerType[key] | number }}</p>
+        </div>
+        <h2>Total Infrastructure Cost (€): {{ deploymentCost | number }}</h2>
+      </mat-card-content>
+    </mat-card>
+    <div *ngFor="let type of objectKeys(groupedDeployments)">
+      <h2 class="type-header">{{ type }}</h2>
+      <mat-card *ngFor="let deployment of groupedDeployments[type]" class="deployment-card">
+        <mat-card-title class="deployment-title">{{ deployment.DeploymentDescription }} ({{ deployment.DeploymentKey
+          }})</mat-card-title>
+        <mat-card-content>
+          <table mat-table [dataSource]="deployment.Resources" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="ResourceType">
+              <th mat-header-cell *matHeaderCellDef> Resource Type </th>
+              <td mat-cell *matCellDef="let element"> {{element.ResourceType}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ResourceCount">
+              <th mat-header-cell *matHeaderCellDef> Count </th>
+              <td mat-cell *matCellDef="let element"> {{element.ResourceCount | number}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ResourceUnitCost">
+              <th mat-header-cell *matHeaderCellDef> Unit Cost (€)</th>
+              <td mat-cell *matCellDef="let element"> {{element.ResourceUnitCost | number}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ResourceCost">
+              <th mat-header-cell *matHeaderCellDef> Total Cost (€)</th>
+              <td mat-cell *matCellDef="let element"> {{element.ResourceCost | number}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['ResourceType', 'ResourceCount', 'ResourceUnitCost', 'ResourceCost']">
+            </tr>
+            <tr mat-row
+              *matRowDef="let row; columns: ['ResourceType', 'ResourceCount', 'ResourceUnitCost', 'ResourceCost'];">
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-container>
+</ng-container>
+<ng-container *ngIf="selectedDisplayType === 'history'">
+  <app-history-graph 
+  [application]="selectedApplication" 
+  [environment]="selectedEnvironment">
+</app-history-graph>
+</ng-container>
+
+<ng-container *ngIf="showStartCard === true">
+  <mat-card class="loading-card">
+    <mat-card-content>
+      <p>Select Application to Start...</p>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
